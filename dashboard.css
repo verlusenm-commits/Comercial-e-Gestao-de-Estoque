@@ -1,0 +1,376 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: #f4f7f6;
+}
+
+.app-container {
+    display: flex;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 260px;
+    background-color: #2c3e50;
+    color: white;
+    padding: 2rem 1rem;
+    height: 100vh;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar h2 { margin-bottom: 2.5rem; text-align: center; }
+.sidebar h2 span { font-weight: 300; opacity: 0.7; }
+
+.nav-btn {
+    background: none;
+    border: none;
+    color: #a0aec0;
+    padding: 1rem;
+    text-align: left;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-radius: 8px;
+    transition: 0.3s;
+    width: 100%;
+}
+
+.nav-btn.active, .nav-btn:hover {
+    background-color: #34495e;
+    color: white;
+}
+
+.user-info { margin-top: auto; padding-top: 1rem; border-top: 1px solid #3e4f5f; }
+.user-info a { color: #e74c3c; text-decoration: none; font-size: 0.8rem; display: block; margin-top: 5px; }
+
+/* Conteúdo */
+.content {
+    flex: 1;
+    margin-left: 260px;
+    padding: 2.5rem;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 1rem;
+}
+
+/* Layout Vendas */
+.venda-container {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 2rem;
+}
+
+.selecao-produtos, .resumo-venda {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.grid-opcoes { display: flex; gap: 1rem; margin: 1rem 0; }
+.campo-pequeno { flex: 1; }
+
+input, select {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    margin-top: 5px;
+}
+
+.btn-adicionar {
+    background: #28a745;
+    color: white;
+    border: none;
+    padding: 1rem;
+    width: 100%;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.resumo-venda { background: #f8f9fa; }
+.item-carrinho { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px dashed #ccc; }
+.totalizador { margin-top: 2rem; border-top: 2px solid #ddd; padding-top: 1rem; }
+.linha-total.final { font-size: 1.5rem; font-weight: bold; display: flex; justify-content: space-between; }
+
+.btn-finalizar {
+    background: #007bff;
+    color: white;
+    width: 100%;
+    padding: 1rem;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    margin-top: 1rem;
+    cursor: pointer;
+}
+
+/* Layout Estoque */
+.grid-estoque {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.card-produto {
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 12px;
+    border-top: 5px solid #ccc;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.info-card h4 { margin-bottom: 5px; color: #333; }
+.info-card span { font-size: 0.9rem; color: #666; }
+
+.grades {
+    display: flex;
+    gap: 15px;
+    margin-top: 15px;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+.card-header-acoes {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-bottom: -10px; /* Puxa o conteúdo um pouco para cima */
+}
+
+.btn-acao {
+    background: #f8f9fa;
+    border: 1px solid #eee;
+    padding: 6px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-acao i {
+    width: 14px;
+    height: 14px;
+}
+
+/* Cores específicas para cada ação */
+.btn-acao.editar { color: #007bff; }
+.btn-acao.editar:hover { background: #e7f1ff; border-color: #007bff; }
+
+.btn-acao.excluir { color: #dc3545; }
+.btn-acao.excluir:hover { background: #fff1f0; border-color: #dc3545; }
+
+/* Ajuste no card para não cortar os botões */
+.card-produto {
+    position: relative;
+    overflow: visible;
+}
+
+/* Cores de borda para cada estado */
+.status-ok { border-top: 5px solid #28a745 !important; }
+.status-alerta { border-top: 5px solid #ffc107 !important; }
+.status-critico { border-top: 5px solid #dc3545 !important; }
+
+/* Cores dos Badges (as etiquetas arredondadas lá embaixo) */
+.status-ok .badge-status { background: #e8f5e9; color: #2e7d32; }
+.status-alerta .badge-status { background: #fffde7; color: #f57f17; }
+.status-critico .badge-status { background: #ffebee; color: #c62828; }
+
+.badge-status {
+    margin-top: 15px;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    text-align: center;
+    display: inline-block;
+}
+
+.status-ok .badge-status { background: #e8f5e9; color: #2e7d32; }
+.status-alerta .badge-status { background: #fffde7; color: #f57f17; }
+.status-critico .badge-status { background: #ffebee; color: #c62828; }
+
+.header-secao h2 {
+    color: #2c3e50;
+    font-size: 1.5rem;
+}
+
+.header-secao p {
+    color: #777;
+    font-size: 0.9rem;
+}
+
+/* Garante que os ícones dentro da lista fiquem alinhados */
+.item-carrinho i {
+    flex-shrink: 0;
+}
+.item-carrinho {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Alinha o texto e o botão verticalmente */
+    padding: 0.8rem 0;
+    border-bottom: 1px dashed #ccc;
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.btn-excluir {
+    background: none;
+    border: none;
+    color: #dc3545; /* Vermelho para alerta */
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 4px;
+    transition: 0.2s;
+}
+
+.btn-excluir:hover {
+    background: #fff1f0;
+    transform: scale(1.1);
+}
+
+.btn-excluir i {
+    width: 18px;
+    height: 18px;
+}
+.btn-excluir {
+    background: transparent;
+    border: none;
+    color: #dc3545; /* Cor vermelha para indicar exclusão */
+    cursor: pointer;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    transition: transform 0.2s;
+}
+
+.btn-excluir:hover {
+    transform: scale(1.2);
+    color: #a71d2a;
+}
+
+.info-item small {
+    display: block;
+    color: #888;
+    font-size: 0.75rem;
+}
+
+input[type="date"], 
+select#motivo-troca {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    font-family: inherit;
+    color: #333;
+}
+
+input[type="date"]:focus, 
+select#motivo-troca:focus {
+    outline: none;
+    border-color: #2c3e50;
+    background-color: #fff;
+}
+
+/* Ajuste do Header para alinhar Título e Data */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #eee;
+}
+
+#section-title {
+    margin: 0; /* Remove margens que podem deslocar o texto */
+    font-size: 1.8rem;
+    color: #2c3e50;
+}
+
+/* Garante que o container de trocas e vendas não aperte os campos */
+.venda-container {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr; /* Dá mais espaço para o formulário na esquerda */
+    gap: 2rem;
+    align-items: start;
+}
+
+/* Evita que inputs dentro de grids fiquem pequenos demais */
+.campo-pequeno input, 
+.campo-pequeno select {
+    width: 100%;
+    box-sizing: border-box; /* Garante que o padding não aumente o tamanho do campo */
+}
+
+/* Container Principal - Garante que nada saia da área visível */
+.content {
+    flex: 1;
+    padding: 2rem;
+    overflow-y: auto; /* Adiciona scroll se o conteúdo for muito alto */
+    background-color: #f8f9fa;
+}
+
+/* Ajuste do Grid para Trocas e Vendas */
+.venda-container {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr; /* Esquerda maior que a direita */
+    gap: 20px;
+    max-width: 100%; /* Não deixa o container ser maior que a tela */
+}
+
+/* Força os inputs a ficarem dentro das colunas */
+.campo-busca input, 
+.campo-pequeno input, 
+.campo-pequeno select,
+select#motivo-troca {
+    width: 100%; /* Ocupa 100% da coluna dele, nem mais, nem menos */
+    box-sizing: border-box; /* Evita que o padding "empurre" o input para fora */
+}
+
+/* Se a tela for pequena, empilha as colunas para não cortar */
+@media (max-width: 1024px) {
+    .venda-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+.info-card h4 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #2c3e50;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.info-card h4 i {
+    width: 20px;
+    height: 20px;
+}

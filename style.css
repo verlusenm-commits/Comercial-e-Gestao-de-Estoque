@@ -1,0 +1,208 @@
+.login-container {
+    display: flex; /* Isso divide a tela em duas partes */
+    width: 1000px;
+    height: 600px;
+    background: #fff;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+}
+/* =========================================
+   1. RESET E CONFIGURAÇÕES GERAIS
+   ========================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background: #f0f2f5;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* =========================================
+   2. CONTAINER PRINCIPAL (TELA DIVIDIDA)
+   ========================================= */
+.login-container {
+    display: flex;
+    width: 100%;
+    max-width: 1000px;
+    height: 600px;
+    background: #fff;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+/* Lado Esquerdo - Banner Azul */
+.login-banner {
+    flex: 1;
+    background: linear-gradient(135deg, #007bff 0%, #003d7a 100%);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px;
+}
+
+.banner-text h1 {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+}
+
+.banner-text h1 span {
+    font-weight: 300;
+    opacity: 0.8;
+}
+
+.banner-text p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    opacity: 0.9;
+}
+
+.feature {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+    font-size: 0.9rem;
+}
+
+/* Lado Direito - Formulário */
+.login-form-side {
+    flex: 1.2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px;
+}
+
+.form-box {
+    width: 100%;
+    max-width: 380px;
+}
+
+.form-box h2 {
+    color: #1a1a1a;
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+}
+
+.form-box p {
+    color: #666;
+    margin-bottom: 35px;
+}
+
+/* =========================================
+   3. INPUTS E ELEMENTOS DE FORMULÁRIO
+   ========================================= */
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: #444;
+}
+
+.input-with-icon {
+    position: relative;
+}
+
+.input-with-icon i {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 18px;
+    color: #999;
+}
+
+.input-with-icon input {
+    width: 100%;
+    padding: 14px 14px 14px 45px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    outline: none;
+    transition: 0.3s;
+}
+
+.input-with-icon input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.1);
+}
+
+.form-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    font-size: 0.85rem;
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    color: #555;
+}
+
+.forgot-password {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+/* =========================================
+   4. BOTÕES E HELPERS
+   ========================================= */
+.btn-login {
+    width: 100%;
+    padding: 16px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: 0.3s;
+}
+
+.btn-login:hover {
+    background: #0056b3;
+}
+
+.login-help {
+    margin-top: 30px;
+    text-align: center;
+    font-size: 0.85rem;
+    color: #888;
+}
+
+.login-help a {
+    color: #555;
+    text-decoration: underline;
+}
+
+/* Responsividade Básica */
+@media (max-width: 850px) {
+    .login-banner { display: none; }
+    .login-container { max-width: 450px; height: auto; }
+}

@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Sistema Camisaria Pro | Painel</title>
+    <link rel="stylesheet" href="css/dashboard.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+    <div class="app-container">
+        <aside class="sidebar">
+            <h2>Camisaria<span>Pro</span></h2>
+            <nav>
+                <button onclick="showSection('vendas')" id="btn-vendas" class="nav-btn active"><i data-lucide="shopping-cart"></i> Vendas</button>
+                <button onclick="showSection('estoque')" id="btn-estoque" class="nav-btn"><i data-lucide="package"></i> Estoque</button>
+                <button onclick="showSection('clientes')" id="btn-clientes" class="nav-btn"><i data-lucide="users"></i> Clientes</button>
+                <button onclick="showSection('trocas')" id="btn-trocas" class="nav-btn"><i data-lucide="refresh-cw"></i> Trocas</button>
+                <button onclick="showSection('configuracoes')" id="btn-configuracoes" class="nav-btn"><i data-lucide="settings"></i> Configurações</button>
+            </nav>
+            <div class="user-info">
+                <p>Vendedor: <strong>Verluse</strong></p>
+                <a href="index.html">Sair</a>
+            </div>
+        </aside>
+
+        <main class="content">
+            <header>
+                <h1 id="section-title">Registro de Vendas</h1>
+                <div class="date-now" id="current-date">Carregando data...</div>
+            </header>
+
+            <div id="main-view">
+                <section id="vendas" class="content-section">
+                    <div class="venda-container">
+                        <div class="selecao-produtos">
+                            <h3>Novo Pedido</h3>
+                            <div class="campo-busca">
+    <label>Produto</label>
+    <input type="text" id="produto" placeholder="Buscar camiseta...">
+</div>
+
+<div class="grid-opcoes">
+    <div class="campo-pequeno">
+        <label>Cor</label>
+        <input type="text" id="cor" placeholder="Ex: Azul">
+    </div>
+    <div class="campo-pequeno">
+        <label>Tamanho</label>
+        <select id="tamanho">
+            <option>P</option>
+            <option>M</option>
+            <option>G</option>
+        </select>
+    </div>
+    <div class="campo-pequeno">
+        <label>Qtd.</label>
+        <input type="number" id="quantidade" value="1" min="1">
+    </div>
+</div>
+                            <button class="btn-adicionar" onclick="adicionarAoCarrinho()">
+                                <i data-lucide="plus-circle"></i> Adicionar
+                            </button>
+                        </div>
+                        <div class="resumo-venda">
+                            <h3>Resumo da Venda</h3>
+                            <div class="lista-itens" id="lista-carrinho"></div>
+                            <div class="totalizador">
+                                <div class="linha-total final"><span>TOTAL:</span><span id="valor-total">R$ 0,00</span></div>
+                            </div>
+                            <button class="btn-finalizar">Finalizar Venda</button>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="clientes" class="content-section" style="display:none;">
+    <div class="venda-container"> 
+        <div class="selecao-produtos">
+            <h3>Novo Cadastro</h3>
+            
+            <div class="grid-opcoes">
+                <div class="campo-pequeno">
+                    <label>ID do Sistema</label>
+                    <input type="text" value="#00125" readonly style="background: #eee; cursor: not-allowed;">
+                </div>
+                <div class="campo-pequeno"> 
+                </div>
+            </div>
+
+            <div class="campo-busca">
+                <label>Nome Completo</label>
+                <input type="text" id="nome-cad" placeholder="Ex: João Silva...">
+            </div>
+
+            <div class="grid-opcoes">
+                <div class="campo-pequeno">
+                    <label>CPF</label>
+                    <input type="text" id="cpf-cad" placeholder="000.000.000-00">
+                </div>
+                <div class="campo-pequeno">
+                    <label>Telefone</label>
+                    <input type="tel" id="tel-cad" placeholder="(11) 99999-9999">
+                </div>
+            </div>
+
+            <div class="campo-busca">
+                <label>E-mail</label>
+                <input type="email" id="email-cad" placeholder="email@email.com">
+            </div>
+
+            <button class="btn-adicionar" onclick="salvarCadastro()">
+                <i data-lucide="user-plus"></i> Finalizar Cadastro
+            </button>
+        </div>
+
+        <div class="resumo-venda">
+            <h3>Cadastros Recentes</h3>
+            <div class="lista-itens" id="lista-cadastrados">
+                <div class="item-carrinho">
+                    <div class="info-item">
+                        <span><strong>#00124</strong> - Maria Oliveira</span>
+                        <small>CPF: 123.456.789-00</small>
+                    </div>
+                    <button class="btn-excluir" onclick="removerItem(this)">
+                        <i data-lucide="trash-2"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="lista-itens" id="lista-cadastrados">
+    <div class="item-carrinho">
+        <div class="info-item">
+            <span><strong>#00124</strong> - Maria Oliveira</span>
+            <small>CPF: 123.456.789-00</small>
+        </div>
+        <button class="btn-excluir" onclick="removerItem(this)">
+            <i data-lucide="trash-2"></i>
+        </button>
+    </div>
+
+    <div class="item-carrinho">
+        <div class="info-item">
+            <span><strong>#00123</strong> - João Souza</span>
+            <small>CPF: 987.654.321-00</small>
+        </div>
+        <button class="btn-excluir" onclick="removerItem(this)">
+            <i data-lucide="trash-2"></i>
+        </button>
+    </div>
+</div>
+</section>
+                
+               <section id="estoque" class="content-section" style="display:none;">
+    <div class="header-secao">
+        <h2>Monitoramento de Inventário</h2>
+        <p>Acompanhe a disponibilidade por cor e tamanho em tempo real.</p>
+    </div>
+
+    <div class="grid-estoque">
+        
+        <div class="card-produto status-ok">
+            <div class="card-header-acoes">
+                <button class="btn-acao editar" title="Editar"><i data-lucide="pencil"></i></button>
+                <button class="btn-acao excluir" title="Excluir"><i data-lucide="trash-2"></i></button>
+            </div>
+            <div class="info-card">
+                <h4>Camiseta Oversized</h4>
+                <span>Cor: <strong>Preta</strong></span>
+                <div class="grades">
+                    <span>P: 12</span> <span>M: 25</span> <span>G: 08</span>
+                </div>
+            </div>
+            <div class="badge-status">Estoque em Dia</div>
+        </div>
+
+        <div class="card-produto status-critico">
+            <div class="card-header-acoes">
+                <button class="btn-acao editar" title="Editar"><i data-lucide="pencil"></i></button>
+                <button class="btn-acao excluir" title="Excluir"><i data-lucide="trash-2"></i></button>
+            </div>
+            <div class="info-card">
+                <h4>Camiseta Basic</h4>
+                <span>Cor: <strong>Branca</strong></span>
+                <div class="grades">
+                    <span>P: 02</span> <span>M: 01</span> <span>G: 00</span>
+                </div>
+            </div>
+            <div class="badge-status">Reposição Urgente</div>
+        </div>
+
+        <div class="card-produto status-alerta">
+            <div class="card-header-acoes">
+                <button class="btn-acao editar" title="Editar"><i data-lucide="pencil"></i></button>
+                <button class="btn-acao excluir" title="Excluir"><i data-lucide="trash-2"></i></button>
+            </div>
+            <div class="info-card">
+                <h4>Camiseta Polo</h4>
+                <span>Cor: <strong>Azul Marinho</strong></span>
+                <div class="grades">
+                    <span>P: 05</span> <span>M: 04</span> <span>G: 10</span>
+                </div>
+            </div>
+            <div class="badge-status">Atenção: Baixo</div>
+        </div>
+
+    </div>
+</section>
+
+<section id="trocas" class="content-section" style="display:none;">
+    <div class="venda-container">
+        
+        <div class="selecao-produtos">
+            <h3>Nova Solicitação</h3>
+            
+            <div class="grid-opcoes" style="display: grid; grid-template-columns: 1fr 2fr; gap: 15px;">
+    <div class="campo-pequeno">
+        <label>ID da Venda</label>
+        <input type="text" placeholder="#0000">
+    </div>
+    <div class="campo-pequeno">
+        <label>Data Original</label>
+        <input type="date">
+    </div>
+</div>
+
+            <div class="campo-busca">
+                <label>Produto a ser Trocado</label>
+                <input type="text" placeholder="Qual item está retornando?">
+            </div>
+
+            <div class="campo-busca">
+                <label>Motivo da Troca</label>
+                <select id="motivo-troca">
+                    <option>Tamanho Inadequado</option>
+                    <option>Defeito de Fabricação</option>
+                    <option>Desistência (7 dias)</option>
+                    <option>Produto Errado</option>
+                </select>
+            </div>
+
+            <button class="btn-adicionar">
+                <i data-lucide="repeat"></i> Registrar Troca
+            </button>
+        </div>
+
+        <div class="resumo-venda">
+            <h3>Trocas em Andamento</h3>
+            <div class="lista-itens">
+                <div class="item-carrinho">
+                    <div class="info-item">
+                        <span><strong>#1040</strong> - Camiseta Polo (G)</span>
+                        <small>Motivo: Defeito | Status: <span style="color: #f57f17;">Análise</span></small>
+                    </div>
+                    <button class="btn-excluir" onclick="removerItem(this)">
+                        <i data-lucide="trash-2"></i>
+                    </button>
+                </div>
+
+                <div class="item-carrinho">
+                    <div class="info-item">
+                        <span><strong>#1038</strong> - Camiseta Basic (M)</span>
+                        <small>Motivo: Tamanho | Status: <span style="color: #2e7d32;">Aprovada</span></small>
+                    </div>
+                    <button class="btn-excluir" onclick="removerItem(this)">
+                        <i data-lucide="trash-2"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="configuracoes" class="content-section" style="display:none;">
+    <div class="grid-estoque">
+        <div class="card-produto">
+            <div class="info-card">
+                <h4><i data-lucide="user"></i> Perfil do Usuário</h4>
+                <div class="campo-busca" style="margin-top: 15px;">
+                    <label>Nome de Exibição</label>
+                    <input type="text" value="Verluse Martins">
+                </div>
+                <div class="campo-busca">
+                    <label>E-mail de Acesso</label>
+                    <input type="email" value="verluse@exemplo.com">
+                </div>
+                <button class="btn-adicionar" style="margin-top: 10px; background-color: #2c3e50;">
+                    Atualizar Perfil
+                </button>
+            </div>
+        </div>
+
+        <div class="card-produto">
+            <div class="info-card">
+                <h4><i data-lucide="sliders"></i> Sistema</h4>
+                <div class="campo-busca" style="margin-top: 15px;">
+                    <label>Moeda Padrão</label>
+                    <select>
+                        <option>Real (BRL)</option>
+                        <option>Dólar (USD)</option>
+                    </select>
+                </div>
+                <div class="campo-busca">
+                    <label>Notificações de Estoque</label>
+                    <div style="display: flex; align-items: center; gap: 10px; margin-top: 5px;">
+                        <input type="checkbox" checked id="notif-estoque" style="width: auto;">
+                        <span style="font-size: 0.85rem;">Alertar quando estoque estiver baixo</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-produto">
+            <div class="info-card">
+                <h4><i data-lucide="shield-check"></i> Segurança</h4>
+                <p style="font-size: 0.85rem; color: #666; margin: 10px 0;">Sua senha foi alterada há 30 dias.</p>
+                <button class="btn-adicionar" style="background-color: #dc3545;">
+                    Alterar Senha
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+            </div>
+        </main>
+    </div>
+
+                
+
+    <script>
+        lucide.createIcons();
+
+        // Data Automática
+        function updateDate() {
+            const now = new Date();
+            document.getElementById('current-date').innerText = now.toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' });
+        }
+        updateDate();
+
+        function showSection(name) {
+    // Esconde todas as seções
+    document.querySelectorAll('.content-section').forEach(s => s.style.display = 'none');
+    
+    // Mostra a seção desejada
+    const target = document.getElementById(name);
+    if (target) {
+        target.style.display = 'block';
+    }
+
+    // Mapeamento exato (Garanta que as chaves sejam iguais aos IDs das sections)
+    const titles = {
+        'vendas': 'Registro de Vendas',
+        'estoque': 'Controle de Estoque',
+        'clientes': 'Gestão de Clientes',
+        'trocas': 'Gestão de Trocas',
+        'configuracoes': 'Configurações'
+    };
+
+    // Atualiza o H1 ou coloca um padrão caso não encontre a chave
+    document.getElementById('section-title').innerText = titles[name] || "Painel de Controle";
+
+    // Atualiza o botão ativo no menu
+    document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+    // Opcional: Adiciona a classe ao botão clicado se o evento existir
+    if (event && event.currentTarget) {
+        event.currentTarget.classList.add('active');
+    }
+}
+
+        // Lógica de Venda com Excluir
+        let totalGeral = 0;
+        function adicionarAoCarrinho() {
+    const prod = document.getElementById('produto').value || "Camiseta";
+    const cor = document.getElementById('cor').value || "Padrão"; // Captura a cor
+    const tam = document.getElementById('tamanho').value;
+    const q = parseInt(document.getElementById('quantidade').value);
+    const valor = q * 59.90;
+    const valorTotalItem = q * preco;
+
+    const lista = document.getElementById('lista-carrinho');
+    const item = document.createElement('div');
+    item.className = 'item-carrinho';
+    
+    // Adicionamos a cor na descrição do item
+    item.innerHTML = `
+        <div class="info-item">
+            <span>${q}x ${prod} (${cor} - ${tam})</span>
+            <strong>R$ ${valor.toFixed(2)}</strong>
+        </div>
+        <button class="btn-excluir" onclick="removerItem(this)">
+            <i data-lucide="trash-2"></i>
+        </button>
+    `;
+
+    lista.appendChild(item);
+    
+    // Atualiza o total geral (supondo que a variável totalGeral exista)
+    totalGeral += valorTotalItem;
+    document.getElementById('valor-total').innerText = `R$ ${totalGeral.toFixed(2)}`;
+    
+    lucide.createIcons(); // Carrega a lixeira nova
+}
+
+        function removerItem(btn, valor) {
+            btn.parentElement.remove();
+            totalGeral -= valor;
+            document.getElementById('valor-total').innerText = `R$ ${Math.max(0, totalGeral).toFixed(2)}`;
+        }
+        // Função genérica para remover qualquer item (venda ou cadastro)
+function removerItem(botao) {
+    // Localiza o item pai (item-carrinho) e o remove
+    const item = botao.closest('.item-carrinho');
+    
+    // Se estiver na aba de vendas, precisamos subtrair o valor do total
+    // Aqui pegamos o valor que está dentro da tag <strong> se ele existir
+    const valorElemento = item.querySelector('strong');
+    if (valorElemento) {
+        const valorTexto = valorElemento.innerText.replace('R$ ', '').replace(',', '.');
+        const valorSubtrair = parseFloat(valorTexto);
+        
+        totalGeral -= valorSubtrair;
+        document.getElementById('valor-total').innerText = `R$ ${Math.max(0, totalGeral).toFixed(2)}`;
+    }
+
+    item.remove();
+}
+
+// Inicializa os ícones novamente após qualquer alteração no HTML
+lucide.createIcons();
+    </script>
+</body>
+</html>

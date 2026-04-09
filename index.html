@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Camisaria Pro</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-banner">
+            <div class="banner-text">
+                <h1>Camisaria<span>Pro</span></h1>
+                <p>Gestão inteligente para o seu negócio têxtil.</p>
+            </div>
+        </div>
+
+        <div class="login-form-side">
+            <form id="loginForm" class="form-box">
+                <h2>Bem-vindo de volta</h2>
+                <p>Acesse sua conta para gerenciar a loja.</p>
+
+                <div class="input-group">
+                    <label for="email">E-mail Corporativo</label>
+                    <div class="input-with-icon">
+                        <i data-lucide="mail"></i>
+                        <input type="email" id="email" placeholder="nome@empresa.com" required>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="password">Senha</label>
+                    <div class="input-with-icon">
+                        <i data-lucide="lock"></i>
+                        <input type="password" id="password" placeholder="••••••••" required>
+                    </div>
+                </div>
+
+                <div class="form-footer">
+                    <label><input type="checkbox"> Lembrar de mim</label>
+                    <a href="#">Esqueceu a senha?</a>
+                </div>
+
+                <button type="submit" class="btn-login">Entrar no Sistema</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+        document.getElementById('loginForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            window.location.href = 'dashboard.html';
+        });
+    </script>
+</body>
+</html>
