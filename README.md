@@ -42,10 +42,15 @@ Este projeto demonstra competências fundamentais para um desenvolvedor em iníc
 ## 📸 Pré-visualização da Interface
 
 <img width="1022" height="603" alt="image" src="https://github.com/user-attachments/assets/915a8562-5ab1-4356-8919-29da2a009a27" />
+
 <img width="1344" height="594" alt="image" src="https://github.com/user-attachments/assets/376de756-18e3-45c4-893e-0ccc95a37744" />
+
 <img width="1357" height="578" alt="image" src="https://github.com/user-attachments/assets/923bead6-316e-4a32-83a9-be1be00ee8b8" />
+
 <img width="1323" height="579" alt="image" src="https://github.com/user-attachments/assets/f59878c0-9e53-46a8-95ae-91800b5afc51" />
+
 <img width="1334" height="574" alt="image" src="https://github.com/user-attachments/assets/12e5a331-32f4-4918-8049-6b93fe93b8ab" />
+
 <img width="1341" height="578" alt="image" src="https://github.com/user-attachments/assets/c1ea9914-5962-4a38-8d16-c5112fb395aa" />
 
 
